@@ -6,7 +6,7 @@
   <% @user.events.each do |event|%>
     <li>
       <%= link_to event_path(event) do %>
-        <%= event.category %> - <%= event.location %> (<%= event.date %>)
+        <%= event.name %> - <%= event.category %>- <%= event.location %> (<%= event.date %>)
       <% end %>
     </li>
   <% end %>
@@ -18,7 +18,7 @@
   <% @user.events_requested.each do |event| %>
     <li>
       <%= link_to event_path(event) do %>
-        Host: <%= event.user.name %> - <%= event.category %> - <%= event.location %> (<%= event.date %>)
+        <%= event.name %> (hosted by <%= event.user.name %>) - <%= event.category %> - <%= event.location %> (<%= event.date %>)
       <% end %>
     </li>
   <% end %>
