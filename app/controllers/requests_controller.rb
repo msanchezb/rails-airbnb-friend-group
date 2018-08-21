@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
   def create
     @request.new(request_params)
     @request.user = current_user
-    @request.event = params[:event_id]
+    @request.event = Event.find(params[:event_id])
     if @request.save
       redirect_to
     else
