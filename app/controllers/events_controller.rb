@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   end
 
   def new
-
+    @event = Event.new
   end
 
   def create
@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:date, :location, )
+    params.require(:event).permit(:date, :location, :description, :)
 
   end
 

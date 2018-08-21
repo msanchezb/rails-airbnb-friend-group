@@ -7,7 +7,7 @@ class RequestsController < ApplicationController
     @request.user = current_user
     @request.event = Event.find(params[:event_id])
     if @request.save
-      redirect_to
+      redirect_to user_path(current_user)
     else
       render "events/#{params[:event_id]}"
     end
