@@ -23,14 +23,14 @@ puts "preparing event seeds"
 # event seeds
 
 #required fields: user_id, date(date_time), location, description(>20wd), category, group_size
-event1 = Event.create(user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
-event2 = Event.create(user_id: user2.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
-event3 = Event.create(user_id: user3.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "drinking", group_size: 8)
-event4 = Event.create(user_id: user4.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "drinking", group_size: 8)
-event5 = Event.create(user_id: user5.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
-event6 = Event.create(user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
-event7 = Event.create(user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
-event8 = Event.create(user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
+event1 = Event.create(name: "event1", user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
+event2 = Event.create(name: "event2", user_id: user2.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
+event3 = Event.create(name: "event3", user_id: user3.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "drinking", group_size: 8)
+event4 = Event.create(name: "event4", user_id: user4.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "drinking", group_size: 8)
+event5 = Event.create(name: "event5", user_id: user5.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
+event6 = Event.create(name: "event6", user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
+event7 = Event.create(name: "event7", user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
+event8 = Event.create(name: "event8", user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8)
 
 puts "EVENT SEEDED BITCHES"
 
