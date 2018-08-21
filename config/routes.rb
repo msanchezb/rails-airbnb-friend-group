@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  get "events/index/:location/:date", to: "events#index", as: :events
+  get "events/index/:location/:date", to: "events#index" #, as: :events
 
   resources :events, only: [:new, :create, :edit, :update, :destroy, :show] do
     resources :requests, only: [:create, :update]
