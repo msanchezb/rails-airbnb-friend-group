@@ -24,11 +24,9 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
@@ -41,12 +39,13 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
+    redirect_to root_path
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:date, :location, :description, :category, :group_size, :latitude, :longitude)
+    params.require(:event).permit(:date, :location, :description, :category, :group_size)
   end
 
   def set_event
@@ -55,7 +54,7 @@ class EventsController < ApplicationController
 
 
   # def get_location(address)
-  #   url = "https://maps.googleapis.com/maps/api/geocode/json?#{adress}";
+  #   url = "https://maps.googleapis.com/maps/api/geocode/json?#{address}";
   #   doc = open(url).read
   #   doc = JSON.parse(doc)
   #   latitude = doc[:data][:results][0][:geometry][:location][:lat]
