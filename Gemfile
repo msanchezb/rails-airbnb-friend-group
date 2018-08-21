@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.4.4'
 
 # Read the API JSON from the google API
-# gem 'json'
+gem 'json'
 
 gem 'bootsnap', require: false
 gem 'devise'

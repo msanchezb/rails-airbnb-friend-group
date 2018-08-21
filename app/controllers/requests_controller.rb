@@ -15,6 +15,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
+    redirect_to user_path(current_user)
   end
 
   private
