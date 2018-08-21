@@ -39,6 +39,9 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
+      <% unless current_user.nil?  %>
+        <p><%= current_user.email %> </p>
+      <% end %>
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
