@@ -1,2 +1,25 @@
 <h1><%= @user.name %>'s page</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<h2><%= @user.name %>'s Hosted Events</h2>
+
+<ul>
+  <% @user.events.each do |event|%>
+    <li>
+      <%= link_to event_path(event) do %>
+        <%= event.name %> - <%= event.category %>- <%= event.location %> (<%= event.date %>)
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<h2><%= @user.name %>'s Requested Events</h2>
+
+<ul>
+  <% @user.events_requested.each do |event| %>
+    <li>
+      <%= link_to event_path(event) do %>
+        <%= event.name %> (hosted by <%= event.user.name %>) - <%= event.category %> - <%= event.location %> (<%= event.date %>)
+      <% end %>
+    </li>
+  <% end %>
+</ul>
