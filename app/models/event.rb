@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   has_many :users, through: :requests
 
 
-  validates_presence_of :user_id, :date, :location, :description, :category, :group_size, :name
+  validates_presence_of :user_id, :date, :location, :description, :category, :group_size, :name, :group_bio, :group_photo
   validates :description, length: { minimum: 20 }
   validates :category, inclusion: { in: %w[drinking sports cinema theatre museum outdoors] }
 end
