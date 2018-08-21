@@ -17,6 +17,6 @@ class User < ApplicationRecord
 
   # Events that the user has requested to attend
   def events_requested
-    results = requests.map { |request| request.event }
+    requests.map { |request| request.event }
   end
 end
