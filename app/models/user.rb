@@ -7,8 +7,6 @@ class User < ApplicationRecord
   has_many :requests
   # Events that the user created
   has_many :events
-  # Events that the user requested to join
-  has_many :events, through: :requests
 
 
   validates :email, presence: true, uniqueness: true
@@ -16,4 +14,9 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :user_bio, presence: true, length: { minimum: 20 }
   validates :user_photo, presence: true
+
+  # Events that the user has requested to attend
+  def events_requested
+    requests.map { |request| request.event }
+  end
 end
