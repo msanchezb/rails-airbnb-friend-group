@@ -3,6 +3,11 @@
 // 2. These variables are defined with default value (see https://robots.thoughtbot.com/sass-default)
 // 3. You can override them below!
 
+// Personalized variables
+
+$input-background-color: white;
+$button-color-forms: #2E96E7;
+
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
