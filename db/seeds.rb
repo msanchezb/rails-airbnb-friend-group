@@ -5,26 +5,30 @@ Event.destroy_all
 puts "Cleansing the users"
 User.destroy_all
 
-puts "Preparing user seeds"
+puts "Preparing new seeds"
 # user seeds
 
 
 names = %w[Mark John Jane Mary Joe Bob Jose Ramon Carlos Clement Roan Maria Freddie]
 bios = [
-  "I love my computer because all my friends live inside it.",
   "On a scale of 1 to 10, I am an 11",
   "I have never let my schooling interfere with my education.",
   "Out of my mind. Back in five minutes.",
   "REHAB is for quitters!",
   "Where the hell am I and how did I get here? ",
   "Shoot for the moon. Even if you miss, you’ll land among the stars.",
-  "When I was nine years old, I fell in love with baseball and dreamed of playing first base. To aid me in my dream, my dad bought me a first baseman’s glove. When my friends and I gathered after school for an informal ball game, everyone knew to stay away from first. That was my spot.
-  Then something happened to change that.",
-  "When human beings experience trauma or severe life stressors, it is not uncommon for their lives to unravel. My great passion is bringing healing to people who have been through a traumatic/stressful experience. I help my clients, who include children, adults and families, to find healthy perceptions of themselves and strengthen their relationships so they can know themselves as peaceful, complete, whole and safe.
-  I know that no single approach is the right one for every individual, and so I have been trained in a range of modalities including Relational Gestalt Therapy, Gestalt Play Therapy, Somatic Experiencing and NARM somatic approaches to the treatment of trauma.",
-  "I am the founder of JUST Creative which is my design studio and graphic design blog.
-  I specialize in logo design, branding, web design and offer design services to businesses of all sizes around the world, ultimately improving their bottom line by crafting creative solutions to their business problems.",
+  "When I was nine years old, I fell in love with baseball and dreamed of playing first base.",
+  "When human beings experience trauma or severe life stressors, it is not uncommon for their lives to unravel. Things aren't great.",
+  "I am the founder of JUST Creative which is my design studio and graphic design blog.",
   "Heirloom typewriter snackwave polaroid next level. Humblebrag bicycle rights hella church-key DIY, raclette kinfolk dreamcatcher tumeric. Venmo subway tile kinfolk hoodie sustainable, you probably haven't heard of them."
+]
+
+group_bios = [  "We're a group of friends from school, kept in touch for the last 15 years and still finding time to hang out! We're pretty chilled out, except Dave who's a KNOB",
+  "We are a group of friends held together by a secret from our past. We love board games and accidentally killing fishermen when it's raining and you can hardly even see the road.",
+  "We all work together at Le Wagon. We love computers. We love kitt. We love our overlords Boris and Seb. We love Ed. We love Slack. We love Jess's dog. We don't love poor lecture attendance.",
+  "We all work at Makers Academy. We're worthless scumbags and nobody likes us and we don't use deodorant and we live with our parents and like charging £8000 for things.",
+  "We're girls. Hee Hee Hee! We like girl things like LIPSTICK and CATS and RYAN GOSLING and SUNSETS and LUNAR CYCLES.",
+  "We all work at Makers Academy. We're worthless scumbags and nobody likes us and we don't use deodorant and we live with our parents and like charging £8000 for things."
 ]
 
 group_photos = [
@@ -64,25 +68,22 @@ address = %w[Hoxton Shoreditch Soho Kensington Camden Surrey Hobbiton]
 
 
 event_names = [
-  "Going out with a few friends to have a few drinks",
+  "Going out with a few friends for some drinks",
   "Football match",
-  "Trivia game in the nextdoor pub",
+  "Pub quiz down the local",
   "Chilling out in the beach",
   "Cinema! Going out to see the next romcom",
   "Coding, coding and coding!! Everyday!"
 ]
 
 event_descriptions = [
-  "The next outstanding show is Monday March 23rd at 8pm. The Comedy Cabaret offers a Laffy Raffy Raffle. To enter all you have to do is RSVP/Join this event, and then on the night of show, be present in the flesh and your name will be entered into a draw for free beer! (DISCLAIMER: If you’re not there when we draw your name you forfeit your mouth-watering super-thirst quenching beer. Also must 19 years of age or older to enter).",
-  "Fundraising proceeds will directly support Reel Asian’s year-round and festival youth programs that help culturally diverse and newcomer youth from the GTA examine issues of identity and belonging through media arts, while providing leadership opportunities, education and job-skills training in film and creative production.",
-  "The massive technology conference Techweek references past attendees and sponsors to illustrate how popular and illustrious the event is. If you don’t have big names to reference you can include testimonials and reviews from past attendees to create the same effect. One study showed that 79 of customers trust online reviews as much as personal recommendations.",
-  "Specialist computer software programmes can be intimidating for those unfamiliar with them, but the title of this event works to put the reader instantly at ease.
-  An awareness of the emotions readers may be experiencing is shown too in the first line, by identifying their problem and showing sympathy.
-  The writer takes pains to reassure the reader, promising it won’t be too hard and writes in a friendly, personal manner. It’s a very low-pressure approach and feels kind of like a mate asking you to hang out for an afternoon.",
-  "The best events are interactive ones, where participants are given a chance to really get involved. BarCamp makes it clear that the attendees are the star of this show, clearly explaining the collaborative concept.
-  The copy makes potential attendees feel they themselves may have something valuable to offer the event. All too often sales copy is only focused on what a product or service can offer a consumer.
-  BarCamp’s copy also includes some fun alliteration and humour to set a bright and breezy tone."
-]
+  "My friends and I are going to head to the pub and drink until the police come. Fancy it?",
+  "LADS football LADS LADS LADS LADS LADS ref's a wanker LADS LADS LADS. Got a spare ticket - come join us!",
+  "Testing our knowledge down at my local pub with some friends - need someone who knows about movies!",
+  "Let's get sandy. Bit of paddling, bit of surfing, maybe a few beers",
+  "Ryan Gosling's new film is out and I am READY. I want to touch him. I want to smell him. :)",
+  "I thought maybe we could turn everybody's screens red and maybe spin them round a bit.."
+  ]
 
 messages = [
   "Hey, you seem really cool people, I want to get to know you",
@@ -91,9 +92,8 @@ messages = [
   "Love you guys, can I join?"
 ]
 
-categories = %w[drinking sports cinema theatre museum outdoors]
+categories = %w[drinking sports games outdoors cinema online ]
 
-puts "USER SEEDED BITCHES"
 20.times do |user|
   name = names.sample
   email = "#{name}#{(100...1000).to_a.sample}@gmail.com"
@@ -105,15 +105,16 @@ puts "USER SEEDED BITCHES"
     hour = (10..23).to_a.sample
     min = (10..60).to_a.sample
     date = "2018-#{month}-#{day} #{hour}:#{min}:00"
-    event = Event.new(date: date, name: event_names.sample, description: event_descriptions.sample, location: address.sample, category: categories.sample, group_bio: bios.sample, group_photo: group_photos.sample, group_size: (5..10).to_a.sample)
+    random_index = (0..5).to_a.sample
+    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], group_photo: group_photos.sample, group_size: (5..10).to_a.sample)
     event.user = user
     event.save
   end
 end
+puts "USERS SEEDED!"
+puts "REQUESTS SEEDED!"
 
 User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
-
-puts "REQUEST SEEDED BITCHES"
 
 Event.all.each do |event|
   users = User.all.select { |user| user.id != event.user.id }
@@ -125,7 +126,8 @@ Event.all.each do |event|
   end
 end
 
-puts "SEEDED BITCHES"
+puts "EVENTS SEEDED!"
+puts "Seeding complete"
 
 
 #required fields: email, encrypted_password(str), name, user_bio (>20wd), user_photo(str)
