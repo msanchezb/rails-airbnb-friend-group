@@ -19,19 +19,11 @@ bios = [
   "Where the hell am I and how did I get here? ",
   "Shoot for the moon. Even if you miss, you’ll land among the stars.",
   "When I was nine years old, I fell in love with baseball and dreamed of playing first base. To aid me in my dream, my dad bought me a first baseman’s glove. When my friends and I gathered after school for an informal ball game, everyone knew to stay away from first. That was my spot.
-  Then something happened to change that.
-  The Little League season was starting up, and I decided to join the local team. During tryouts, the manager told us kids to run onto the field and man the position we most wanted to play. I of course sprinted towards first, but was in for a shock.
-  Five other kids had beaten me there. Apparently, each of us had the same dream. The manager told us that to win the job we’d have to compete with one another. Before he held the competition, though, he scanned the rest of the field.
-  Every position had at least one kid occupying it; that is, except for catcher. No one had claimed that spot. 'Who wants to catch?'' the manager asked. 'We need a catcher.'",
-  "Challenges are what makes life interesting; overcoming them is what makes life meaningful.",
+  Then something happened to change that.",
   "When human beings experience trauma or severe life stressors, it is not uncommon for their lives to unravel. My great passion is bringing healing to people who have been through a traumatic/stressful experience. I help my clients, who include children, adults and families, to find healthy perceptions of themselves and strengthen their relationships so they can know themselves as peaceful, complete, whole and safe.
-  I know that no single approach is the right one for every individual, and so I have been trained in a range of modalities including Relational Gestalt Therapy, Gestalt Play Therapy, Somatic Experiencing and NARM somatic approaches to the treatment of trauma
-  My educational background includes a MA in Counseling Psychology and a Doctor in Clinical Psychology from Ryokan College in Los Angeles. I have a B.A. in Psychology from the University of Stockholm, Sweden a graduate certificate in Gestalt Psychotherapy from the University of Derby in the U.K",
+  I know that no single approach is the right one for every individual, and so I have been trained in a range of modalities including Relational Gestalt Therapy, Gestalt Play Therapy, Somatic Experiencing and NARM somatic approaches to the treatment of trauma.",
   "I am the founder of JUST Creative which is my design studio and graphic design blog.
-  I specialize in logo design, branding, web design and offer design services to businesses of all sizes around the world, ultimately improving their bottom line by crafting creative solutions to their business problems. Shoot me a quick email to see how I can help you!
-  Past clients have included the likes of Disney, Nintendo, Jerry Seinfeld and hundreds more. Feel free to read some lovely testimonials from them.
-  I hold a Bachelor of Visual Communication (Graphic Design Major) from The University of Newcastle, Sydney, Australia with a Dean’s Recommendation of Honours, and have over 15 years of experience in the field with multiple awards under my belt, including the ‘Best of Brand Design‘ awarded by LinkedIn.
-  I’m a digital nomad and I travel the world while freelancing & blogging (currently up to 80+ countries). You can see my current location on my travel blog, JUST Globetrotting. Rest assured, my clients are always my first priority.",
+  I specialize in logo design, branding, web design and offer design services to businesses of all sizes around the world, ultimately improving their bottom line by crafting creative solutions to their business problems.",
   "Heirloom typewriter snackwave polaroid next level. Humblebrag bicycle rights hella church-key DIY, raclette kinfolk dreamcatcher tumeric. Venmo subway tile kinfolk hoodie sustainable, you probably haven't heard of them."
 ]
 
