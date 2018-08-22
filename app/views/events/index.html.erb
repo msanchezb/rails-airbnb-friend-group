@@ -1,14 +1,46 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<div id="event-index" class="container-lg">
+  <div class="event-index-header">
+    <h1>Events happening near <em>Hoxton</em></h1>
+    <div class="search-bar">
+      <p>Search again placeholder</p>
+    </div>
+  </div>
+  <div class="main-flex">
+    <div class="card-container">
+      <div class="row">
+        <% @events.each do |event| %>
+          <div class="col-xs-6">
+            <div class="event-card">
+              <%= link_to "", event_path(event), class: "divlink" %>
+              <div class="card-img" style="background-image: url(<%= image_path 'friends.jpg' %>)">
+              </div>
+              <div class="card-info">
+                <div class="card-info-header">
+                  <%= event.name %>
+                  <i class="fas fa-beer"></i>
+                </div>
+                <div class="card-info-body">
+                  <div class="card-info-body-l">
+                    <p><%= event.user.name.capitalize %> and <%= event.group_size %> friends</p>
+                    <p><%= event.location.capitalize %></p>
+                  </div>
+                  <div class="card-info-body-r">
+                    <p>Sunday 26th Aug</p>
+                    <p>20:00</p>
+                  </div>
+                </div>
+                <%#= link_to "Edit", edit_event_path(event) %>
+                <%#= link_to "Delete", event_path(event), method: :delete %>
 
-<ul>
-  <% @events.each do |event| %>
-    <li>
-      <%= link_to event.description, event_path(event) %>
-      <%= event.date %>
-      <%= event.location %>
-      <%= link_to "Edit", edit_event_path(event) %>
-      <%= link_to "Delete", event_path(event), method: :delete %>
-    </li>
-  <% end %>
-</ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="index-map">
+      <img src=<%= image_path 'map.png' %>>
+    </div>
+  </div>
+
+</div>
