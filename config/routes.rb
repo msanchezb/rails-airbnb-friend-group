@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   get "events/index/:location/:date", to: "events#index" #, as: :events
+  # route to go from home to index
+  post "events/index", to: "events#index"
 
   resources :events, only: [:new, :create, :edit, :update, :destroy, :show] do
     resources :requests, only: [:create, :update]

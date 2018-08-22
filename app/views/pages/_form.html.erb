@@ -1,0 +1,8 @@
+<%= simple_form_for :data, url: 'events/index', html: { class: 'form-inline' } do |f| %>
+  <%= f.input :location, as: :string, input_html: { placeholder: 'Where?' }, wrapper_html: { class: 'form-group' }, label: false %>
+
+  <%= f.input :date, as: :date, wrapper_html: { class: 'form-group' }, label: false, order: [:day, :month, :year] %>
+  <div class="form-group">
+    <%= f.submit "Go!!", class: 'btn-primary form-control' %>
+  </div>
+<% end %>
