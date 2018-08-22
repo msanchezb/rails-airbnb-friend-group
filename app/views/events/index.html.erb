@@ -15,7 +15,7 @@
               <div class="card-info">
                 <div class="card-info-header">
                   <span><%= event.name %></span>
-                  <i class="fas fa-beer"></i>
+                  <i class="<%= EventsController::LOGOS[event.category] %>"></i>
                 </div>
                 <div class="card-info-body">
                   <div class="card-info-body-l">
