@@ -61,19 +61,14 @@ user_photos = [
   "https://images.unsplash.com/photo-1529408773869-8a620761744f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac140e11990d2578596a4b9fddf01ab4&auto=format&fit=crop&w=400&q=60"
 ]
 
-address = [
-  "684 The Green, HUDDERSFIELD, HD10 9MC",
-  "7068 Highfield Road, TELFORD, TF84 0WT",
-  "812 Mill Road, STOCKPORT, SK1 7DV",
-  "8319 Chester Road, LIVERPOOL, L57 9KH",
-  "41 Stanley Road, DERBY, DE96 3LC",
-  "7494 New Road, WEST LONDON, W65 2PB",
-  "377 North Street, BOURNEMOUTH, BH53 5AO"
-]
-
-date = [
-  "2018-12-DD HH:MI:SS."
-]
+address = %w[Hoxton Shoreditch Soho Kensington Camden Surrey Hobbiton]
+  # "684 The Green, HUDDERSFIELD, HD10 9MC",
+  # "7068 Highfield Road, TELFORD, TF84 0WT",
+  # "812 Mill Road, STOCKPORT, SK1 7DV",
+  # "8319 Chester Road, LIVERPOOL, L57 9KH",
+  # "41 Stanley Road, DERBY, DE96 3LC",
+  # "7494 New Road, WEST LONDON, W65 2PB",
+  # "377 North Street, BOURNEMOUTH, BH53 5AO"
 
 
 event_names = [
@@ -84,7 +79,6 @@ event_names = [
   "Cinema! Going out to see the next romcom",
   "Coding, coding and coding!! Everyday!"
 ]
-
 
 event_descriptions = [
   "The next outstanding show is Monday March 23rd at 8pm. The Comedy Cabaret offers a Laffy Raffy Raffle. To enter all you have to do is RSVP/Join this event, and then on the night of show, be present in the flesh and your name will be entered into a draw for free beer! (DISCLAIMER: If you’re not there when we draw your name you forfeit your mouth-watering super-thirst quenching beer. Also must 19 years of age or older to enter).",
@@ -107,37 +101,32 @@ messages = [
 
 categories = %w[drinking sports cinema theatre museum outdoors]
 
-def random_item(array)
-  int = rand(array.length)
-  array[int]
-end
-
 puts "USER SEEDED BITCHES"
-(0...20).each do |user|
-  name = random_item(names)
+20.times do |user|
+  name = names.sample
   email = "#{name}#{(100...1000).to_a.sample}@gmail.com"
-  user = User.new(email: email, name: name, user_bio: random_item(bios), user_photo: random_item(user_photos), password: "password")
+  user = User.new(email: email, name: name, user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
   user.save
-  (0...10).each do |event|
+  6.times do
     month = %w[08 09 10 11 12].sample
     day = (10..28).to_a.sample
     hour = (10..23).to_a.sample
     min = (10..60).to_a.sample
     date = "2018-#{month}-#{day} #{hour}:#{min}:00"
-    event = Event.new(date: date, name: random_item(event_names), description: random_item(event_descriptions), location: random_item(address), category: random_item(categories), group_bio: random_item(bios), group_photo: random_item(group_photos), group_size: (5..10).to_a.sample)
+    event = Event.new(date: date, name: event_names.sample, description: event_descriptions.sample, location: address.sample, category: categories.sample, group_bio: bios.sample, group_photo: group_photos.sample, group_size: (5..10).to_a.sample)
     event.user = user
     event.save
   end
 end
 
-User.create(email: "test@test.com", name: "Awesome", user_bio: random_item(bios), user_photo: random_item(user_photos), password: "password")
+User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
 
 puts "REQUEST SEEDED BITCHES"
 
 Event.all.each do |event|
   users = User.all.select { |user| user.id != event.user.id }
   users.sample(2).each do |user|
-    request = Request.new(message: random_item(messages))
+    request = Request.new(message: messages.sample)
     request.event = event
     request.user = user
     request.save

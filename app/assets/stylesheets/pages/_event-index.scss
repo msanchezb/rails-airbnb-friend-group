@@ -58,12 +58,20 @@
 
 .card-info-header {
   display: flex;
-  padding: 0 20px;
+  padding: 0 10px;
   justify-content: space-between;
   align-items: center;
   font-size: 24px;
-  height: 50px;
+  height: 80px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  span {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+  }
+  i {
+    padding-left: 30px;
+  }
 }
 
 .card-info-body {
