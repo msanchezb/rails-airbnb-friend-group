@@ -1,15 +1,43 @@
-<h1><%= @event.name %></h1>
+<div id="event-show" class="flex-container">
+  <div class="event-info-container">
+    <div class="event-title-category">
+      <h1><%= @event.name %></h1>
+      <div class="flex-right">
+        <span>Drinking</span>
+        <i class="fas fa-beer"></i>
+      </div>
+    </div>
+    <p><Strong>Description:</Strong> <%= @event.description %></p>
+    <div class="event-body-flex">
+      <div class="event-details-body">
+        <div class="event-details-top">
+          <ul>
+            <li><strong>Time: </strong>20:00</li>
+            <li><strong>Date: </strong><%= @event.date %></li>
+            <li><strong>Location: </strong><%= @event.location %></li>
+            <li><strong>Group size:</strong> <%= @event.group_size %></li>
+          </ul>
+        </div>
+        <div class="event-details-bottom">
+          <p><strong>Host name:</strong> <%= @event.user.name.capitalize %> <%= link_to user_path(@event.user) do%>
+            <i class="fas fa-long-arrow-alt-left"></i>
+            <span>More about the host</span>
+          <% end %>
+          </p>
+          <p><strong>Group bio:</strong> <%= @event.group_bio %></p>
+        </div>
+      </div>
+      <div class="group-photo" style="background-image: url(<%= image_path "friends.jpg" %>); background-size: cover; background-position: center;">
+      </div>
+    </div>
+  </div>
+  <div id="map-container">
+    <img src=<%= image_path 'map.png' %>>
+  </div>
+</div>
 
-<ul>
-  <li>Host: <%= @event.user.name %></li>
-  <li>Category: <%= @event.category %></li>
-  <li>Description: <%= @event.description %></li>
-  <li>Location: <%= @event.location %></li>
-  <li>Date: <%= @event.date %></li>
-  <li>Group size: <%= @event.group_size %></li>
-  <li>Group bio: <%= @event.group_bio %></li>
-  <li>Event confirmed?? <%= @event.confirmed %></li>
-</ul>
+
+<!-- <li>Event confirmed?? <%#= @event.confirmed %></li> -->
 <%#= @event.review_of_host %>
 <%#= @event.review_of_guest %>
-<%= link_to "Home", "/events/index/1/2"  %>
+<%#= link_to "Home", "/events/index/1/2"  %>
