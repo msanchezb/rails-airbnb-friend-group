@@ -1,0 +1,6 @@
+
+<% request = Request.new %>
+<%= simple_form_for request, url: event_requests_path(@event) do |f| %>
+  <%= f.input :message, wrapper_html: { class: 'form-group' }, input_html: { placeholder: 'Message to the host' }, label: false %>
+  <%= f.submit "Request to Join", class: 'btn-primary form-control'%>
+<% end %>

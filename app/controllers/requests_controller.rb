@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   before_action :set_request, only: :destroy
 
   def create
-    @request.new(request_params)
+    @request = Request.new(request_params)
     @request.user = current_user
     @request.event = Event.find(params[:event_id])
     if @request.save
