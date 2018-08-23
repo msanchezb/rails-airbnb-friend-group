@@ -1,6 +1,6 @@
 <div id="event-index" class="container-lg">
   <div class="event-index-header">
-    <h1>Showing <%= @events.count %> events happening near <em><%= @location.capitalize %>:</em></h1>
+    <h1>Showing <%= @events.size %> events happening near <em><%= @location.capitalize %>:</em></h1>
     <%= render 'shared/search-form' %>
   </div>
   <div class="main-flex">
@@ -20,7 +20,7 @@
                 <div class="card-info-body">
                   <div class="card-info-body-l">
                     <p><%= event.user.name.capitalize %> and <%= event.group_size %> friends</p>
-                    <p><%= event.location.capitalize %></p>
+                    <p><%= event.location %></p>
                   </div>
                   <div class="card-info-body-r">
                     <p><%= event.date.strftime("%A %d %b") %></p>
