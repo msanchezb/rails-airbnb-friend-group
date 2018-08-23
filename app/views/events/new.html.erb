@@ -13,12 +13,11 @@
 <script type="text/javascript">
   flatpickr('.datepicker', {
     altInput: true,
-    altFormat: "F j, Y",
-    dateFormat: "Y-m-d",
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
     defaultDate: new Date,
     minDate: new Date,
-    maxDate: new Date().fp_incr(300),
-    mode: "range"
+    maxDate: new Date().fp_incr(300)
   });
 </script>
 
