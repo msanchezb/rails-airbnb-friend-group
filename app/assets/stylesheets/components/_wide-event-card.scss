@@ -7,7 +7,7 @@
   border-radius: 4px;
   margin: 10px;
   padding: 0;
-  background-color: rgb(216, 216, 216);
+  background-color: rgba(216, 216, 216, 0.5);
   color: black;
   display: flex;
   align-items: center;
@@ -53,4 +53,27 @@
 
 .right-column{
   flex: 0 0 170px;
+  i {
+    padding-right: 10px;
+    font-size: 30px;
+  }
+}
+
+.request-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.pending {
+  color: #ffa90b;
+}
+
+.accepted {
+  color: #10c125;
+}
+
+.rejected {
+  color: red;
 }
