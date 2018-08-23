@@ -3,8 +3,8 @@
     <div class="event-title-category">
       <h1><%= @event.name %></h1>
       <div class="flex-right">
-        <span>Drinking</span>
-        <i class="fas fa-beer"></i>
+        <span><%= @event.category.capitalize %></span>
+        <i class="<%= EventsController::LOGOS[@event.category] %>"></i>
       </div>
     </div>
     <p><Strong>Description:</Strong> <%= @event.description %></p>
@@ -17,6 +17,9 @@
             <li><strong>Location: </strong><%= @event.location %></li>
             <li><strong>Group size:</strong> <%= @event.group_size %></li>
           </ul>
+          <% unless @event.price.zero? || %>
+            <p><strong>Price: </strong><%=  %> (to cover activity costs)</p>
+          <% end %>
         </div>
         <div class="event-details-bottom">
           <p><strong>Host name:</strong> <%= @event.user.name.capitalize %> <%= link_to user_path(@event.user) do%>
@@ -27,17 +30,19 @@
           <p><strong>Group bio:</strong> <%= @event.group_bio %></p>
         </div>
       </div>
-      <div class="group-photo" style="background-image: url(<%= image_path "friends.jpg" %>); background-size: cover; background-position: center;">
+      <div class="group-photo" style="background-image: url(<%= @event.group_photo %>); background-size: cover; background-position: center;">
       </div>
     </div>
     <div class="request-form">
-      <p>Request to Join placeholder</p>
+      <%= render 'shared/request-form' %>
     </div>
   </div>
   <div id="map-container">
     <img src=<%= image_path 'map.png' %>>
   </div>
 </div>
+
+
 
 
 <!-- <li>Event confirmed?? <%#= @event.confirmed %></li> -->

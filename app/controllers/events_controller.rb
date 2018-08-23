@@ -3,10 +3,23 @@ class EventsController < ApplicationController
   # require 'open-uri'
 
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  LOGOS = {
+    "drinking" => "fas fa-beer",
+    "sports" => "fas fa-futbol",
+    "cinema" => "fas fa-film",
+    "games" => "fas fa-chess-king",
+    "online" => "fas fa-laptop",
+    "outdoors" => "fas fa-walking"
+}
 
   def index
-    #for the moment listing them all
-    @events = Event.all
+    @location = "London"
+    if params["data"]["location"].present?
+      @location = params["data"]["location"]
+      @events = Event.where("location ILIKE ?", "%#{@location}%")
+    else
+      @events = Event.all
+    end
   end
 
   def new
