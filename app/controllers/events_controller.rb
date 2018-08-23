@@ -13,8 +13,9 @@ class EventsController < ApplicationController
 }
 
   def index
+    # raise
     #for the moment listing them all
-    @events = Event.all
+    @events = Event.where(location: params["data"]["location"])
   end
 
   def new
