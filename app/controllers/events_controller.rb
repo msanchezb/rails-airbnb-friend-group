@@ -37,6 +37,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    # raise
   end
 
   def edit
