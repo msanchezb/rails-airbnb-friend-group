@@ -16,10 +16,10 @@
             <li><strong>Date: </strong><%= @event.date %></li>
             <li><strong>Location: </strong><%= @event.location %></li>
             <li><strong>Group size:</strong> <%= @event.group_size %></li>
+            <% unless @event.price.zero? %>
+              <li><strong>Price:</strong> £<%= @event.price %> (to cover activity costs)</li>
+            <% end %>
           </ul>
-          <% unless @event.price.zero? || %>
-            <p><strong>Price: </strong><%=  %> (to cover activity costs)</p>
-          <% end %>
         </div>
         <div class="event-details-bottom">
           <p><strong>Host name:</strong> <%= @event.user.name.capitalize %> <%= link_to user_path(@event.user) do%>

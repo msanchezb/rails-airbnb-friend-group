@@ -76,6 +76,8 @@ event_names = [
   "Coding, coding and coding!! Everyday!"
 ]
 
+event_prices = [ 0, 50, 5, 0, 8, 0 ]
+
 event_descriptions = [
   "My friends and I are going to head to the pub and drink until the police come. Fancy it?",
   "LADS football LADS LADS LADS LADS LADS ref's a wanker LADS LADS LADS. Got a spare ticket - come join us!",
@@ -106,7 +108,7 @@ categories = %w[drinking sports games outdoors cinema online ]
     min = (10..60).to_a.sample
     date = "2018-#{month}-#{day} #{hour}:#{min}:00"
     random_index = (0..5).to_a.sample
-    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], group_photo: group_photos.sample, group_size: (5..10).to_a.sample)
+    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], group_photo: group_photos.sample, group_size: (5..10).to_a.sample, price: event_prices[random_index])
     event.user = user
     event.save
   end
