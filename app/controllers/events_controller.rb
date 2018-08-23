@@ -13,13 +13,11 @@ class EventsController < ApplicationController
 }
 
   def index
+    @events = Event.all
     @location = "London"
-    if params["data"]["location"].present?
-      @location = params["data"]["location"]
-      @events = Event.where("location ILIKE ?", "%#{@location}%")
-    else
-      @events = Event.all
-    end
+    @location = params["data"]["location"] if params["data"]["location"].present?
+    @events = @events.where('date BETWEEN ? AND ?', params["data"]["date"].split(" to ")[0] + " 00:00:00", params["data"]["date"].split(" to ")[1]  + " 23:59:59") if params["data"]["date"].present?
+    @events = @events.where("location ILIKE ?", "%#{params["data"]["location"]}%") if params["data"]["location"].present?
   end
 
   def new
@@ -63,7 +61,11 @@ class EventsController < ApplicationController
   end
 
   def set_event
-    @event = Event.find(params[:id])
+    if params[:id] == "index"
+      redirect_to root_path
+    else
+      @event = Event.find(params[:id])
+    end
   end
 
 
