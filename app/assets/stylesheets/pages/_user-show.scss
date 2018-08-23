@@ -14,26 +14,33 @@
   width: 100%;
   margin: 0 auto;
   padding: 0;
+  // background-color: white;
 }
 
 #left-bar{
-  flex-basis: 5%;
+
 }
 
 #middle-bar{
   padding: 0 10px;
   flex-basis: 50%;
   align-items: center;
-  background-color: white;
+  // background-color: white;
   text-align: center;
+}
+
+.white-background{
+  background-color: white;
 }
 
 
 #user-info{
+  position: sticky;
+  top: 0;
   align-items: center;
   text-align: center;
   flex-basis: 35%;
-  padding-top: 20px;
+  padding-top: 50px;
   display: flex;
   flex-direction: column;
 }
@@ -48,6 +55,11 @@
 
 #user-info h1{
   margin-top: 0;
+}
+
+#middle-bar h2{
+  margin: 0;
+  padding: 15px 0;
 }
 
 // .requested_events{
