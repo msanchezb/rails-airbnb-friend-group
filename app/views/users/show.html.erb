@@ -12,18 +12,27 @@
         <% end %>
       <h2><%= @user.name %>'s Requested Events</h2>
       <% @user.events_requested.each do |event| %>
-        <div class="wide-event-card">
-          <%= link_to event_path(event) do %>
-            <div class="inner-row">
-              <p><%= event.name %></p>
-              <p><%= event.category %></p>
+        <%= link_to event_path(event) do %>
+          <div class="wide-event-card">
+            <div class="left-column"><i class="<%= EventsController::LOGOS[event.category] %>"></i>
             </div>
-            <div class="inner-row">
-              <p>hosted by: <%= event.user.name %></p>
-              <p><%= event.location %> (<%= event.date %>)</p>
+            <div class="middle-column">
+              <div class="wide-event-card-title">
+               <h4> </i><%= event.name %></h4>
+              </div>
+              <!-- <div class="inner-row"> -->
+                <p><%= event.date.strftime("%A %d %b") %> (<%= event.location %>)</p>
+              <!-- </div> -->
+              <!-- <div class="inner-row"> -->
+                <p><%= event.date.strftime("%H:%M") %></p>
+              <!-- </div> -->
             </div>
-          <% end %>
-        </div>
+            <div class="right-column">
+              <p>pending</p>
+              <div class="form-container">cancel</div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <div id="user-info">
