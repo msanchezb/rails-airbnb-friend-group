@@ -57,7 +57,7 @@ user_photos = [
   "https://images.unsplash.com/photo-1529408773869-8a620761744f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac140e11990d2578596a4b9fddf01ab4&auto=format&fit=crop&w=400&q=60"
 ]
 
-address = %w[Hoxton Shoreditch Soho Kensington Camden Surrey Hobbiton]
+address = ["Hoxton, London", "Shoreditch, London", "Soho, London", "Kensington, London", "Camden, London", "Hammersmith, UK"]
   # "684 The Green, HUDDERSFIELD, HD10 9MC",
   # "7068 Highfield Road, TELFORD, TF84 0WT",
   # "812 Mill Road, STOCKPORT, SK1 7DV",
@@ -101,7 +101,7 @@ categories = %w[drinking sports games outdoors cinema online ]
   email = "#{name}#{(100...1000).to_a.sample}@gmail.com"
   user = User.new(email: email, name: name, user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
   user.save
-  6.times do
+  1.times do
     month = "08"
     day = (25..31).to_a.sample
     hour = (10..20).to_a.sample

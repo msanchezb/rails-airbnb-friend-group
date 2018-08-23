@@ -15,9 +15,11 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @location = "London"
-    @location = params["data"]["location"] if params["data"]["location"].present?
-    @events = @events.where('date BETWEEN ? AND ?', params["data"]["date"].split(" to ")[0] + " 00:00:00", params["data"]["date"].split(" to ")[1]  + " 23:59:59") if params["data"]["date"].present?
-    @events = @events.where("location ILIKE ?", "%#{params["data"]["location"]}%") if params["data"]["location"].present?
+    if params["data"].present?
+      @location = params["data"]["location"] if params["data"]["location"].present?
+      @events = Event.near(@location, 3) if params["data"]["location"].present?
+      @events = @events.where('date BETWEEN ? AND ?', params["data"]["date"].split(" to ")[0] + " 00:00:00", params["data"]["date"].split(" to ")[1]  + " 23:59:59") if params["data"]["date"].present?
+    end
   end
 
   def new
