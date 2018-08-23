@@ -3,27 +3,35 @@
     <div id="middle-bar">
       <h2><%= @user.name %>'s Hosted Events</h2>
         <% @user.events.each do |event|%>
-          <div class="row">
+          <div class="wide-event-card">
             <%= link_to event_path(event) do %>
-              <%= event.name %> - <%= event.category %>- <%= event.location %> (<%= event.date %>)
+              <p><%= event.name %> - <%= event.category %></p>
+              <p><%= event.location %> (<%= event.date %>)</p>
             <% end %>
           </div>
-         <% end %>
-       <h2><%= @user.name %>'s Requested Events</h2>
-         <% @user.events_requested.each do |event| %>
-           <div class="row">
-             <%= link_to event_path(event) do %>
-              <%= event.name %> (hosted by <%= event.user.name %>) - <%= event.category %> - <%= event.location %> (<%= event.date %>)
-             <% end %>
-           </div>
-         <% end %>
+        <% end %>
+      <h2><%= @user.name %>'s Requested Events</h2>
+      <% @user.events_requested.each do |event| %>
+        <div class="wide-event-card">
+          <%= link_to event_path(event) do %>
+            <div class="inner-row">
+              <p><%= event.name %></p>
+              <p><%= event.category %></p>
+            </div>
+            <div class="inner-row">
+              <p>hosted by: <%= event.user.name %></p>
+              <p><%= event.location %> (<%= event.date %>)</p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-    <div id="user-info">
-      <div class="user-photo" style="background-image: url(<%= @user.user_photo %>); background-size: cover; background-position: center;">
-      </div>
-        <%#= image_tag('@user.user_photo') %>
-        <h1><%= @user.name %>'s page</h1>
-        <h4>User Bio:</h4>
-        <p><%= @user.user_bio %></p>
+  <div id="user-info">
+    <div class="user-photo" style="background-image: url(<%= @user.user_photo %>); background-size: cover; background-position: center;">
     </div>
+    <h1><%= @user.name %>'s page</h1>
+    <h4>User Bio:</h4>
+    <p><%= @user.user_bio %></p>
+    <div class="form-container"><p>write comment/edit profile</p></div>
+  </div>
 </div>
