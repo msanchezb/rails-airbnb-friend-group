@@ -14,10 +14,6 @@
       <%= link_to "Profile", user_path(current_user), class: "navbar-buddy-up-item navbar-buddy-up-link" %>
       <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "navbar-buddy-up-item navbar-buddy-up-link" %>
 
-      <div class="navbar-buddy-up-item">
-        <%= image_tag current_user.user_photo.url(:avatar), class: "avatar" %>
-      </div>
-
       <%= link_to user_path(current_user), class: "navbar-buddy-up-item" do %>
         <%= image_tag current_user.user_photo.url(:avatar), class: "avatar" %>
       <% end %>
