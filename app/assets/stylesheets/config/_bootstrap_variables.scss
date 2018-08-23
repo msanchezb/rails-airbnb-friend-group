@@ -5,10 +5,11 @@
 
 
 // Personalized variables
+$basic-color: #64ED7B;
 $background-color-form:   #BABABA;
-
 $input-background-color: white;
-$button-color-forms: #2E96E7;
+$button-color-forms: $basic-color;
+$navbar-color: $basic-color;
 
 // General style
 $font-family-sans-serif:  $body-font;

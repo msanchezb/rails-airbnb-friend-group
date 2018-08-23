@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  get "events/index/:location/:date", to: "events#index" #, as: :events
+  get "events/index", to: "events#index"#, as: :events_index
   # route to go from home to index
   post "events/index", to: "events#index"
 
