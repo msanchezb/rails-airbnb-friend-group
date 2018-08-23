@@ -94,7 +94,7 @@ messages = [
   "Love you guys, can I join?"
 ]
 
-categories = %w[drinking sports games outdoors cinema online ]
+categories = %w[Drinking Sports Games Outdoors Cinema Online]
 
 20.times do |user|
   name = names.sample
@@ -116,8 +116,6 @@ end
 puts "USERS SEEDED!"
 puts "REQUESTS SEEDED!"
 
-User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
-
 Event.all.each do |event|
   users = User.all.select { |user| user.id != event.user.id }
   users.sample(2).each do |user|
@@ -127,6 +125,8 @@ Event.all.each do |event|
     request.save
   end
 end
+
+User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
 
 puts "EVENTS SEEDED!"
 puts "Seeding complete"
