@@ -1,0 +1,48 @@
+.form-wrapper {
+  background-color: $background-color-form;
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .event-form-container {
+    width: 60%;
+    width-maximum: 800px;
+    width-minimum: 300px;
+    background-color: #EEEEEE;
+    padding: 20px;
+    border-radius: 3px;
+    .form-title {
+      text-align: center;
+    }
+    .datepicker{
+      background-color: $input-background-color;
+    }
+    .inline-form-fields {
+      display: flex;
+      justify-content: space-between;
+      .form-group-first {
+        margin-right: 5px;
+      }
+      .form-group-second {
+        margin-left: 5px;
+      }
+    }
+    .button-form {
+      background-color: $button-color-forms;
+      border: 0;
+      color: white;
+      opacity: 0.9;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .event-form-container {
+    .inline-form-fields {
+      display: block;
+    }
+  }
+}
