@@ -13,9 +13,13 @@ class EventsController < ApplicationController
 }
 
   def index
-    # raise
-    #for the moment listing them all
-    @events = Event.where(location: params["data"]["location"])
+    @location = "London"
+    if params["data"]["location"].present?
+      @location = params["data"]["location"]
+      @events = Event.where("location ILIKE ?", "%#{@location}%")
+    else
+      @events = Event.all
+    end
   end
 
   def new
