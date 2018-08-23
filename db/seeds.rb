@@ -57,6 +57,24 @@ user_photos = [
   "https://images.unsplash.com/photo-1529408773869-8a620761744f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac140e11990d2578596a4b9fddf01ab4&auto=format&fit=crop&w=400&q=60"
 ]
 
+# group_photos = [
+#   "friends-beach",
+#   "friends-bonfire",
+#   "friends-sunset",
+#   "friends-drinks",
+#   "friends-hangout",
+#   "friends-mountain"
+# ]
+
+# user_photos = [
+#   "user-photo-1",
+#   "user-photo-2",
+#   "user-photo-3",
+#   "user-photo-4",
+#   "user-photo-5",
+#   "user-photo-6"
+# ]
+
 address = %w[Hoxton Shoreditch Soho Kensington Camden Surrey Hobbiton]
   # "684 The Green, HUDDERSFIELD, HD10 9MC",
   # "7068 Highfield Road, TELFORD, TF84 0WT",
@@ -99,7 +117,8 @@ categories = %w[drinking sports games outdoors cinema online ]
 20.times do |user|
   name = names.sample
   email = "#{name}#{(100...1000).to_a.sample}@gmail.com"
-  user = User.new(email: email, name: name, user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
+  user = User.new(email: email, name: name, user_bio: bios.sample, remote_user_photo_url: user_photos.sample, password: "password")
+
   user.save
   6.times do
     month = "08"
@@ -108,7 +127,7 @@ categories = %w[drinking sports games outdoors cinema online ]
     min = [00, 30].sample
     date = "2018-#{month}-#{day} #{hour}:#{min}:00"
     random_index = (0..5).to_a.sample
-    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], group_photo: group_photos.sample, group_size: (5..10).to_a.sample, price: event_prices[random_index])
+    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], remote_group_photo_url: group_photos.sample, group_size: (5..10).to_a.sample, price: event_prices[random_index])
     event.user = user
     event.save
   end
@@ -116,7 +135,7 @@ end
 puts "USERS SEEDED!"
 puts "REQUESTS SEEDED!"
 
-User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
+User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, remote_user_photo_url: group_photos.sample, password: "password")
 
 Event.all.each do |event|
   users = User.all.select { |user| user.id != event.user.id }
@@ -129,6 +148,7 @@ Event.all.each do |event|
 end
 
 puts "EVENTS SEEDED!"
+puts "#{User.count} users created, #{Event.count} events created, #{Request.count} requests created. "
 puts "Seeding complete"
 
 
