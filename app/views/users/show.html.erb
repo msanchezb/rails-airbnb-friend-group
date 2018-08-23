@@ -12,21 +12,20 @@
         <div class="profile-hosted-events tabcontent" id="Hosted">
           <h2><%= @user.name %>'s Hosted Events</h2>
           <% @user.events.each do |event|%>
-            <%= link_to event_path(event) do %>
+            <%= link_to event_path(event), class: "card-link" do %>
               <div class="wide-event-card">
                 <div class="card-left">
                   <div class="left-column"><i class="<%= EventsController::LOGOS[event.category] %>"></i>
                   </div>
                   <div class="middle-column">
                     <div class="wide-event-card-title">
-                     <h4> </i><%= event.name %></h4>
+                     <h4><%= event.name %></h4>
                     </div>
                       <p><%= event.date.strftime("%A %d %b") %> (<%= event.location %>)</p>
                       <p><%= event.date.strftime("%H:%M") %></p>
                   </div>
                 </div>
                 <div class="right-column">
-
                   <div class="form-container">Cancel</div>
                 </div>
               </div>
@@ -36,25 +35,34 @@
         <div class="profile-joined-events tabcontent" id="Joined">
           <h2><%= @user.name %>'s Requested Events</h2>
           <% @user.events_requested.each do |event| %>
-          <%= link_to event_path(event) do %>
             <div class="wide-event-card">
-              <div class="card-left">
-                <div class="left-column"><i class="<%= EventsController::LOGOS[event.category] %>"></i>
-                </div>
-                <div class="middle-column">
-                  <div class="wide-event-card-title">
-                   <h4> </i><%= event.name %></h4>
+              <%= link_to event_path(event), class: "event-card-link" do %>
+                <div class="card-content-flex">
+                  <div class="card-left">
+                    <div class="left-column"><i class="<%= EventsController::LOGOS[event.category] %>"></i>
+                    </div>
+                    <div class="middle-column">
+                      <div class="wide-event-card-title">
+                       <h4><%= event.name %></h4>
+                      </div>
+                        <p><%= event.date.strftime("%A %d %b") %> (<%= event.location %>)</p>
+                        <p><%= event.date.strftime("%H:%M") %></p>
+                    </div>
                   </div>
-                    <p><%= event.date.strftime("%A %d %b") %> (<%= event.location %>)</p>
-                    <p><%= event.date.strftime("%H:%M") %></p>
+                  <div class="right-column">
+                    <div class="request-status <%= event.requests.find { |request| request.user == @user }.status %>">
+                      <i class="<%= UsersController::STATUSES[event.requests.find { |request| request.user == @user }.status] %>"></i>
+                      <%= event.requests.find { |request| request.user == @user }.status %>
+                    </div>
+                    <% unless event.requests.find { |request| request.user == @user }.status == "rejected" %>
+                      <%= link_to request_path(event.requests.find { |request| request.user == @user }), method: :delete, id: "delete-request" do %>
+                        <i class="fas fa-times"></i>Cancel request
+                      <% end %>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
-              <div class="right-column">
-                <p><%= event.requests.find { |request| request.user == @user }.status %></p>
-                <div class="form-container">Cancel</div>
-              </div>
+              <% end %>
             </div>
-          <% end %>
           <% end %>
         </div>
       </div>

@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
+  STATUSES = {
+    "pending" => "far fa-clock",
+    "accepted" => "fas fa-check",
+    "rejected" => "fas fa-times"
+  }
+
   def new
     @user = User.new
   end
