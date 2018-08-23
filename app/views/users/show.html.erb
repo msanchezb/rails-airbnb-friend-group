@@ -1,7 +1,8 @@
 <div id="user-show" class="container">
   <div id="left-bar"></div>
     <div id="middle-bar">
-      <h2><%= @user.name %>'s Hosted Events</h2>
+      <div class="profile-hosted-events">
+        <h2><%= @user.name %>'s Hosted Events</h2>
         <% @user.events.each do |event|%>
           <div class="wide-event-card">
             <%= link_to event_path(event) do %>
@@ -10,30 +11,35 @@
             <% end %>
           </div>
         <% end %>
-      <h2><%= @user.name %>'s Requested Events</h2>
-      <% @user.events_requested.each do |event| %>
+      </div>
+      <div class="profile-joined-events">
+        <h2><%= @user.name %>'s Requested Events</h2>
+        <% @user.events_requested.each do |event| %>
         <%= link_to event_path(event) do %>
           <div class="wide-event-card">
-            <div class="left-column"><i class="<%= EventsController::LOGOS[event.category] %>"></i>
-            </div>
-            <div class="middle-column">
-              <div class="wide-event-card-title">
-               <h4> </i><%= event.name %></h4>
+            <div class="card-left">
+              <div class="left-column"><i class="<%= EventsController::LOGOS[event.category] %>"></i>
               </div>
-              <!-- <div class="inner-row"> -->
-                <p><%= event.date.strftime("%A %d %b") %> (<%= event.location %>)</p>
-              <!-- </div> -->
-              <!-- <div class="inner-row"> -->
-                <p><%= event.date.strftime("%H:%M") %></p>
-              <!-- </div> -->
+              <div class="middle-column">
+                <div class="wide-event-card-title">
+                 <h4> </i><%= event.name %></h4>
+                </div>
+                <!-- <div class="inner-row"> -->
+                  <p><%= event.date.strftime("%A %d %b") %> (<%= event.location %>)</p>
+                <!-- </div> -->
+                <!-- <div class="inner-row"> -->
+                  <p><%= event.date.strftime("%H:%M") %></p>
+                <!-- </div> -->
+              </div>
             </div>
             <div class="right-column">
-              <p>pending</p>
-              <div class="form-container">cancel</div>
+              <p><%= event.requests.find { |request| request.user == @user }.status %></p>
+              <div class="form-container">Cancel</div>
             </div>
           </div>
         <% end %>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   <div id="user-info">
     <div class="user-photo" style="background-image: url(<%= @user.user_photo %>); background-size: cover; background-position: center;">
