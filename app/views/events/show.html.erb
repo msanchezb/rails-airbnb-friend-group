@@ -12,8 +12,8 @@
       <div class="event-details-body">
         <div class="event-details-top">
           <ul>
-            <li><strong>Time: </strong>20:00</li>
-            <li><strong>Date: </strong><%= @event.date %></li>
+            <li><strong>Time: </strong><%= @event.date.strftime("%H:%M") %></li>
+            <li><strong>Date: </strong><%= @event.date.strftime("%A %d %B %Y") %></li>
             <li><strong>Location: </strong><%= @event.location %></li>
             <li><strong>Group size:</strong> <%= @event.group_size %></li>
             <% unless @event.price.zero? %>
