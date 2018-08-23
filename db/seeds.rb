@@ -102,10 +102,10 @@ categories = %w[drinking sports games outdoors cinema online ]
   user = User.new(email: email, name: name, user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
   user.save
   6.times do
-    month = %w[08 09 10 11 12].sample
-    day = (10..28).to_a.sample
-    hour = (10..23).to_a.sample
-    min = (10..60).to_a.sample
+    month = "08"
+    day = (25..31).to_a.sample
+    hour = (10..20).to_a.sample
+    min = [00, 30].sample
     date = "2018-#{month}-#{day} #{hour}:#{min}:00"
     random_index = (0..5).to_a.sample
     event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], group_photo: group_photos.sample, group_size: (5..10).to_a.sample, price: event_prices[random_index])
