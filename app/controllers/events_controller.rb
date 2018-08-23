@@ -61,7 +61,11 @@ class EventsController < ApplicationController
   end
 
   def set_event
-    @event = Event.find(params[:id])
+    if params[:id] == "index"
+      redirect_to root_path
+    else
+      @event = Event.find(params[:id])
+    end
   end
 
 
