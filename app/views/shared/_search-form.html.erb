@@ -1,8 +1,25 @@
-<%= simple_form_for :data, url: events_index_path, html: { class: 'form-inline' } do |f| %>
-  <%= f.input :location, as: :string, input_html: { placeholder: 'Where?' }, wrapper_html: { class: 'form-group' }, label: false %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-  <%= f.input :date, as: :date, wrapper_html: { class: 'form-group' }, label: false, order: [:day, :month, :year] %>
-  <div class="form-group">
-    <%= f.submit "Go!!", class: 'btn-primary form-control' %>
-  </div>
-<% end %>
+<div id="search-form">
+  <%= simple_form_for :data, url: events_index_path do |f| %>
+    <%= f.input :location, as: :string, input_html: { placeholder: 'Where?' }, label: false %>
+
+    <%= f.input :date, as: :string, input_html: { class: 'datepicker', placeholder: "When are you in town?" }, label: false, order: [:day, :month, :year] %>
+    <div class="form-group">
+      <%= f.submit "Go!!", class: ' form-control button-form' %>
+    </div>
+  <% end %>
+</div>
+
+
+<script type="text/javascript">
+  flatpickr('.datepicker', {
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d",
+    minDate: new Date,
+    maxDate: new Date().fp_incr(300),
+    mode: "range"
+  });
+</script>
