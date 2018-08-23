@@ -1,25 +1,98 @@
-<h1><%= @user.name %>'s page</h1>
 
-<h2><%= @user.name %>'s Hosted Events</h2>
 
-<ul>
-  <% @user.events.each do |event|%>
-    <li>
-      <%= link_to event_path(event) do %>
-        <%= event.name %> - <%= event.category %>- <%= event.location %> (<%= event.date %>)
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div id="user-show" class="container">
+    <div id="middle-bar">
+      <div class="tabs">
+        <a id="defaultOpen" class="tab" onclick="openEvent(event, 'Joined')">
+          <p>Requested events</p>
+        </a>
+        <a class="tab" onclick="openEvent(event, 'Hosted')">
+          <p>Hosted events</p>
+        </a>
+      </div>
+      <div class="white-background">
+        <div class="profile-hosted-events tabcontent" id="Hosted">
+          <h2><%= @user.name %>'s Hosted Events</h2>
+          <% @user.events.each do |event|%>
+            <%= link_to event_path(event) do %>
+            <div class="wide-event-card">
+              <div class="card-left">
+                <div class="left-column"><i class="<%= EventsController::LOGOS[event.category] %>"></i>
+                </div>
+                <div class="middle-column">
+                  <div class="wide-event-card-title">
+                   <h4> </i><%= event.name %></h4>
+                  </div>
+                    <p><%= event.date.strftime("%A %d %b") %> (<%= event.location %>)</p>
+                    <p><%= event.date.strftime("%H:%M") %></p>
+                </div>
+              </div>
+              <div class="right-column">
 
-<h2><%= @user.name %>'s Requested Events</h2>
+                <div class="form-container">Cancel</div>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="profile-joined-events tabcontent" id="Joined">
+          <h2><%= @user.name %>'s Requested Events</h2>
+          <% @user.events_requested.each do |event| %>
+          <%= link_to event_path(event) do %>
+            <div class="wide-event-card">
+              <div class="card-left">
+                <div class="left-column"><i class="<%= EventsController::LOGOS[event.category] %>"></i>
+                </div>
+                <div class="middle-column">
+                  <div class="wide-event-card-title">
+                   <h4> </i><%= event.name %></h4>
+                  </div>
+                    <p><%= event.date.strftime("%A %d %b") %> (<%= event.location %>)</p>
+                    <p><%= event.date.strftime("%H:%M") %></p>
+                </div>
+              </div>
+              <div class="right-column">
+                <p><%= event.requests.find { |request| request.user == @user }.status %></p>
+                <div class="form-container">Cancel</div>
+              </div>
+            </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <div id="user-info">
+    <div class="user-photo" style="background-image: url(<%= @user.user_photo %>); background-size: cover; background-position: center;">
+    </div>
+    <h1><%= @user.name %>'s page</h1>
+    <h4>User Bio:</h4>
+    <p><%= @user.user_bio %></p>
+    <div class="form-container-two"><p>edit profile</p></div>
+  </div>
+</div>
 
-<ul>
-  <% @user.events_requested.each do |event| %>
-    <li>
-      <%= link_to event_path(event) do %>
-        <%= event.name %> (hosted by <%= event.user.name %>) - <%= event.category %> - <%= event.location %> (<%= event.date %>)
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<script type="text/javascript">
+function openEvent(evt, eventName) {
+    // Declare all variables
+    var i, tabcontent, tab;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tab" and remove the class "active"
+    tab = document.getElementsByClassName("tab");
+    for (i = 0; i < tab.length; i++) {
+        tab[i].className = tab[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(eventName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
