@@ -1,0 +1,34 @@
+<div id="event-form">
+  <%= simple_form_for @event do |f| %>
+    <div id="name-location">
+      <div class="form-group-first">
+        <%= f.input :name, label: "Event Name", input_html: { placeholder: "e.g. Going to the pub" } %>
+        </div>
+        <div class="form-group-second">
+        <%= f.input :location, label: "Event Location", input_html: { placeholder: "e.g. Hoxton" } %>
+        </div>
+    </div>
+    <%= f.input :date, as: :string, input_html: { class: 'datepicker', value: Date.today }, order: [:day, :month, :year], label: "Date & Time"%>
+      <%= f.input :description, label: "Event Description", input_html: { placeholder: "Tell us about the event" }  %>
+    <div class="inline-form-fields">
+      <div class="form-group-first">
+        <%= f.input :category, collection: %w[Drinking Sports Games Outdoors Cinema Online] %>
+      </div>
+      <div class="form-group-second">
+        <%= f.input :group_size, collection: (4...10).to_a.push("10+") %>
+      </div>
+    </div>
+    <div class="inline-form-fields">
+      <div class="form-group-first">
+        <%= f.input :group_bio, as: :text, input_html: { placeholder: "Tell us a bit about your friends" } %>
+      </div>
+      <div class="form-group-second">
+        <%= f.input :group_photo, as: :text %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Create event", class: ' form-control button-form' %>
+    </div>
+  <% end %>
+</div>
