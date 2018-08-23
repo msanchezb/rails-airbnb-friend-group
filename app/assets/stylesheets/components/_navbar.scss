@@ -1,14 +1,19 @@
 /* Main navbar */
 .navbar-buddy-up {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
+  // background: white;
   transition: all 0.3s ease;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   height: 55px;
   padding: 0px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: $navbar-color;
+  z-index: 5;
 }
 
 /* Logo */
@@ -32,8 +37,8 @@
 
 /* Basic navbar item */
 .navbar-buddy-up-item {
-  cursor: pointer;
   padding: 0 20px;
+  z-index: 6;
 }
 
 /* Navbar link */
