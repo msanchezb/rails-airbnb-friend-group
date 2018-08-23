@@ -1,9 +1,7 @@
 <div id="event-index" class="container-lg">
   <div class="event-index-header">
-    <h1>Events happening near <em>Hoxton</em></h1>
-    <div class="search-bar">
-      <p>Search again placeholder</p>
-    </div>
+    <h1>Events happening near <em><%= @location.capitalize %></em></h1>
+    <%= render 'shared/search-form' %>
   </div>
   <div class="main-flex">
     <div class="card-container">
@@ -17,7 +15,7 @@
               <div class="card-info">
                 <div class="card-info-header">
                   <span><%= event.name %></span>
-                  <i class="fas fa-beer"></i>
+                  <i class="<%= EventsController::LOGOS[event.category] %>"></i>
                 </div>
                 <div class="card-info-body">
                   <div class="card-info-body-l">

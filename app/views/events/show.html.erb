@@ -3,8 +3,8 @@
     <div class="event-title-category">
       <h1><%= @event.name %></h1>
       <div class="flex-right">
-        <span>Drinking</span>
-        <i class="fas fa-beer"></i>
+        <span><%= @event.category.capitalize %></span>
+        <i class="<%= EventsController::LOGOS[@event.category] %>"></i>
       </div>
     </div>
     <p><Strong>Description:</Strong> <%= @event.description %></p>
@@ -16,6 +16,9 @@
             <li><strong>Date: </strong><%= @event.date %></li>
             <li><strong>Location: </strong><%= @event.location %></li>
             <li><strong>Group size:</strong> <%= @event.group_size %></li>
+            <% unless @event.price.zero? %>
+              <li><strong>Price:</strong> £<%= @event.price %> (to cover activity costs)</li>
+            <% end %>
           </ul>
         </div>
         <div class="event-details-bottom">
