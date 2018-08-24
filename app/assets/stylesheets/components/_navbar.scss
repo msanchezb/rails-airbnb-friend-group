@@ -51,6 +51,20 @@
   text-decoration: none;
 }
 
+.notification-container {
+  position: relative;
+}
+
+.notification-badge {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  background-color: #ff3d00;
+}
+
 /* Dropdown menu */
 .navbar-buddy-up-dropdown-menu {
   margin-top: 15px;

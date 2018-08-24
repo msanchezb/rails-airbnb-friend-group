@@ -7,6 +7,8 @@ class RequestsController < ApplicationController
     @request.user = current_user
     @request.event = Event.find(params[:event_id])
     if @request.save
+      @request.event.user.notifications = true
+      @request.event.user.save
       redirect_to user_path(current_user)
     else
       render "events/#{params[:event_id]}"
@@ -22,6 +24,8 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @request.status = "accepted"
     @request.save
+    @request.user.notifications = true
+    @request.user.save
     @user = @request.event.user
     render "users/show"
   end
@@ -30,6 +34,8 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @request.status = "rejected"
     @request.save
+    @request.user.notifications = true
+    @request.user.save
     @user = @request.event.user
     render "users/show"
   end
