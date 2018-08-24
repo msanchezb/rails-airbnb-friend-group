@@ -113,6 +113,7 @@
     <h1><%= @user.name %>'s page</h1>
     <h4>User Bio:</h4>
     <p><%= @user.user_bio %></p>
+    <%= link_to "edit profile", edit_user_path(@user), class: "form-container-two" %>
     <div class="form-container-two"><p>edit profile</p></div>
   </div>
 </div>
