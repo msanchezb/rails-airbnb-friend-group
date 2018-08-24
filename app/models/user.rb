@@ -19,4 +19,7 @@ class User < ApplicationRecord
   def events_requested
     requests.map { |request| request.event }
   end
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 end
