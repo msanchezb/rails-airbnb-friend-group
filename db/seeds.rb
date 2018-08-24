@@ -28,6 +28,10 @@ group_bios = [  "We're a group of friends from school, kept in touch for the las
   "We all work together at Le Wagon. We love computers. We love kitt. We love our overlords Boris and Seb. We love Ed. We love Slack. We love Jess's dog. We don't love poor lecture attendance.",
   "We all work at Makers Academy. We're worthless scumbags and nobody likes us and we don't use deodorant and we live with our parents and like charging £8000 for things.",
   "We're girls. Hee Hee Hee! We like girl things like LIPSTICK and CATS and RYAN GOSLING and SUNSETS and LUNAR CYCLES.",
+  "We all work at Makers Academy. We're worthless scumbags and nobody likes us and we don't use deodorant and we live with our parents and like charging £8000 for things.",
+  "We all work together at Le Wagon. We love computers. We love kitt. We love our overlords Boris and Seb. We love Ed. We love Slack. We love Jess's dog. We don't love poor lecture attendance.",
+  "We all work at Makers Academy. We're worthless scumbags and nobody likes us and we don't use deodorant and we live with our parents and like charging £8000 for things.",
+  "We're girls. Hee Hee Hee! We like girl things like LIPSTICK and CATS and RYAN GOSLING and SUNSETS and LUNAR CYCLES.",
   "We all work at Makers Academy. We're worthless scumbags and nobody likes us and we don't use deodorant and we live with our parents and like charging £8000 for things."
 ]
 
@@ -57,16 +61,7 @@ user_photos = [
   "https://images.unsplash.com/photo-1529408773869-8a620761744f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac140e11990d2578596a4b9fddf01ab4&auto=format&fit=crop&w=400&q=60"
 ]
 
-address = ["Hoxton, London", "Shoreditch, London", "Soho, London", "Kensington, London", "Camden, London", "Hammersmith, UK"]
-
-  # "684 The Green, HUDDERSFIELD, HD10 9MC",
-  # "7068 Highfield Road, TELFORD, TF84 0WT",
-  # "812 Mill Road, STOCKPORT, SK1 7DV",
-  # "8319 Chester Road, LIVERPOOL, L57 9KH",
-  # "41 Stanley Road, DERBY, DE96 3LC",
-  # "7494 New Road, WEST LONDON, W65 2PB",
-  # "377 North Street, BOURNEMOUTH, BH53 5AO"
-
+address = ["Hoxton N1 6NG", "Hoxton E2 8EA", "Hoxton EC2A 3HZ", "Shoreditch EC3A 8EP", "Shoreditch EC3N 4AB", "Shoreditch, N1 6QT", "Soho, London", "Kensington, London", "Camden, London", "Hammersmith, W6 9QH", "Barnes SW13 9WT"]
 
 event_names = [
   "Going out with a few friends for some drinks",
@@ -74,10 +69,14 @@ event_names = [
   "Pub quiz down the local",
   "Chilling out in the beach",
   "Cinema! Going out to see the next romcom",
-  "Coding, coding and coding!! Everyday!"
+  "Coding, coding and coding!! Everyday!",
+  "Feeding the ducks",
+  "Abuse of prescription drugs",
+  "Dungeons and Dragons at the pub",
+  "Swimming in the Thames"
 ]
 
-event_prices = [ 0, 50, 5, 0, 8, 0 ]
+event_prices = [ 0, 50, 5, 0, 8, 0, 0, 0, 0, 0 ]
 
 event_descriptions = [
   "My friends and I are going to head to the pub and drink until the police come. Fancy it?",
@@ -85,7 +84,11 @@ event_descriptions = [
   "Testing our knowledge down at my local pub with some friends - need someone who knows about movies!",
   "Let's get sandy. Bit of paddling, bit of surfing, maybe a few beers",
   "Ryan Gosling's new film is out and I am READY. I want to touch him. I want to smell him. :)",
-  "I thought maybe we could turn everybody's screens red and maybe spin them round a bit.."
+  "I thought maybe we could turn everybody's screens red and maybe spin them round a bit..",
+  "Let's go and give the ducks some bread, show them a good time.",
+  "I just found where my mum keeps all her prescription drugs - let's take them :)",
+  "Starting a new DnD campaign, looking for a Dungeon Master to lead the way!",
+  "Let's go swimming with the dolphins in the Thames"
   ]
 
 messages = [
@@ -95,7 +98,7 @@ messages = [
   "Love you guys, can I join?"
 ]
 
-categories = %w[Drinking Sports Games Outdoors Cinema Online]
+categories = %w[Drinking Sports Games Outdoors Cinema Online Outdoors Sports Games Outdoors]
 
 20.times do |user|
   name = names.sample
@@ -103,14 +106,14 @@ categories = %w[Drinking Sports Games Outdoors Cinema Online]
   user = User.new(email: email, name: name, user_bio: bios.sample, remote_user_photo_url: user_photos.sample, password: "password", remote_group_photo_url: group_photos.sample, group_bio: group_bios.sample)
 
   user.save
-  1.times do
+  2.times do
     month = "08"
     day = (25..31).to_a.sample
     hour = (10..20).to_a.sample
     min = [00, 30].sample
     date = "2018-#{month}-#{day} #{hour}:#{min}:00"
-    random_index = (0..5).to_a.sample
-    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], remote_group_photo_url: group_photos[random_index], group_size: (5..10).to_a.sample, price: event_prices[random_index])
+    random_index = (0..9).to_a.sample
+    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], remote_group_photo_url: group_photos.sample, group_size: (5..10).to_a.sample, price: event_prices[random_index])
     event.user = user
     event.save
   end
