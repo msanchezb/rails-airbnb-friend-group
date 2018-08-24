@@ -37,11 +37,14 @@
       <%= render 'shared/request-form' %>
     </div>
   </div>
-  <div id="map-container">
-    <img src=<%= image_path 'map.png' %>>
+  <!-- <div id="map-container"> -->
+  <div id="map" data-marker="<%= @marker.to_json %>"
+    >
   </div>
+  <!-- </div> -->
 </div>
 
+ <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
 
 
 
