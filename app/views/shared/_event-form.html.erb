@@ -8,25 +8,29 @@
         <%= f.input :location, label: "Event Location", input_html: { placeholder: "e.g. Hoxton" } %>
         </div>
     </div>
-    <%= f.input :date, as: :string, input_html: { class: 'datepicker', value: Date.today }, order: [:day, :month, :year], label: "Date & Time"%>
-      <%= f.input :description, label: "Event Description", input_html: { placeholder: "Tell us about the event" }  %>
     <div class="inline-form-fields">
       <div class="form-group-first">
+        <%= f.input :date, as: :string, input_html: { class: 'datepicker', value: Date.today }, order: [:day, :month, :year], label: "Date & Time"%>
+      </div>
+      <div class="form-group-second">
         <%= f.input :category, collection: %w[Drinking Sports Games Outdoors Cinema Online] %>
       </div>
-      <div class="form-group-second">
-        <%= f.input :group_size, collection: (4...10).to_a.push("10+") %>
-      </div>
     </div>
+      <%= f.input :description, label: "Event Description", input_html: { placeholder: "Tell us about the event" }  %>
+      <%= f.input :group_bio, as: :text, input_html: { placeholder: "Tell us a bit about your friends" } %>
     <div class="inline-form-fields">
       <div class="form-group-first">
-        <%= f.input :group_bio, as: :text, input_html: { placeholder: "Tell us a bit about your friends" } %>
+        <%= f.input :group_size, collection: (4...10).to_a.push("10+") %>
+        <div >
+          <%= f.input :group_photo, label: "New Group Picture?" %>
+          <%= f.input :group_photo_cache, as: :hidden %>
+        </div>
       </div>
-      <div class="form-group-second">
-        <%= f.input :group_photo, as: :text %>
+      <div class="form-group-third" >
+        <p>Current photo</p>
+        <div style="background-image: url(<%= image_path current_user.group_photo.url(:thumbnail) %>); background-size: cover; height: 150px;"></div>
       </div>
     </div>
-
     <div class="form-group">
       <%= f.submit "Create event", class: ' form-control button-form' %>
     </div>

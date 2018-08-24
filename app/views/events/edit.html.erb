@@ -1,6 +1,23 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-<%= render 'form' %>
+<div class="form-wrapper">
+  <div class="event-form-container">
+    <div class="form-title">
+      <h2>Edit Event</h2>
+    </div>
+    <%= render 'shared/event-form' %>
+  </div>
+</div>
 
-<%= link_to "Back", edit_event_path(@event)  %>
+<script type="text/javascript">
+  flatpickr('.datepicker', {
+    altInput: true,
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    defaultDate: new Date,
+    minDate: new Date,
+    maxDate: new Date().fp_incr(300),
+    time_24hr: true
+  });
+</script>

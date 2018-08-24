@@ -58,6 +58,7 @@ user_photos = [
 ]
 
 address = ["Hoxton, London", "Shoreditch, London", "Soho, London", "Kensington, London", "Camden, London", "Hammersmith, UK"]
+
   # "684 The Green, HUDDERSFIELD, HD10 9MC",
   # "7068 Highfield Road, TELFORD, TF84 0WT",
   # "812 Mill Road, STOCKPORT, SK1 7DV",
@@ -94,12 +95,13 @@ messages = [
   "Love you guys, can I join?"
 ]
 
-categories = %w[drinking sports games outdoors cinema online ]
+categories = %w[Drinking Sports Games Outdoors Cinema Online]
 
 20.times do |user|
   name = names.sample
   email = "#{name}#{(100...1000).to_a.sample}@gmail.com"
-  user = User.new(email: email, name: name, user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
+  user = User.new(email: email, name: name, user_bio: bios.sample, remote_user_photo_url: user_photos.sample, password: "password", remote_group_photo_url: group_photos.sample, group_bio: group_bios.sample)
+
   user.save
   1.times do
     month = "08"
@@ -108,7 +110,7 @@ categories = %w[drinking sports games outdoors cinema online ]
     min = [00, 30].sample
     date = "2018-#{month}-#{day} #{hour}:#{min}:00"
     random_index = (0..5).to_a.sample
-    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], group_photo: group_photos.sample, group_size: (5..10).to_a.sample, price: event_prices[random_index])
+    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], remote_group_photo_url: group_photos[random_index], group_size: (5..10).to_a.sample, price: event_prices[random_index])
     event.user = user
     event.save
   end
@@ -116,7 +118,7 @@ end
 puts "USERS SEEDED!"
 puts "REQUESTS SEEDED!"
 
-User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
+User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, remote_user_photo_url: group_photos.sample, password: "password", remote_group_photo_url: group_photos.sample, group_bio: group_bios.sample)
 
 Event.all.each do |event|
   users = User.all.select { |user| user.id != event.user.id }
@@ -128,48 +130,8 @@ Event.all.each do |event|
   end
 end
 
+User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
+
 puts "EVENTS SEEDED!"
+puts "#{User.count} users created, #{Event.count} events created, #{Request.count} requests created. "
 puts "Seeding complete"
-
-
-#required fields: email, encrypted_password(str), name, user_bio (>20wd), user_photo(str)
-# bio = "Heirloom typewriter snackwave polaroid next level. Humblebrag bicycle rights hella church-key DIY, raclette kinfolk dreamcatcher tumeric. Venmo subway tile kinfolk hoodie sustainable, you probably haven't heard of them."
-# user1 = User.create(email: "test@test.com", password: "passWORD", name: "testo", user_bio: bio, user_photo: "photo")
-# user2 = User.create(email: "test2@test.com", password: "passWORD", name: "testy", user_bio: bio, user_photo: "photo")
-# user3 = User.create(email: "test3@test.com", password: "passWORD", name: "testum", user_bio: bio, user_photo: "photo")
-# user4 = User.create(email: "test4@test.com", password: "passWORD", name: "tester", user_bio: bio, user_photo: "photo")
-# user5 = User.create(email: "test5@test.com", password: "passWORD", name: "testerer", user_bio: bio, user_photo: "photo")
-
-# puts "USER SEEDED BITCHES"
-
-
-# puts "preparing event seeds"
-# # event seeds
-
-# #required fields: user_id, date(date_time), location, description(>20wd), category, group_size
-# event1 = Event.create(name: "event1", user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8, group_photo: "photo", group_bio: bio)
-# event2 = Event.create(name: "event2", user_id: user2.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8, group_photo: "photo", group_bio: bio)
-# event3 = Event.create(name: "event3", user_id: user3.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "drinking", group_size: 8, group_photo: "photo", group_bio: bio)
-# event4 = Event.create(name: "event4", user_id: user4.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "drinking", group_size: 8, group_photo: "photo", group_bio: bio)
-# event5 = Event.create(name: "event5", user_id: user5.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8, group_photo: "photo", group_bio: bio)
-# event6 = Event.create(name: "event6", user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8, group_photo: "photo", group_bio: bio)
-# event7 = Event.create(name: "event7", user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8, group_photo: "photo", group_bio: bio)
-# event8 = Event.create(name: "event8", user_id: user1.id, date: "2018-08-12 20:30:00", location: "london", description: bio, category: "sports", group_size: 8, group_photo: "photo", group_bio: bio)
-
-# puts "EVENT SEEDED BITCHES"
-
-
-# puts "preparing request seeds"
-# # request seeds
-
-# #required fields: user_id, event_id, status, message,
-# Request.create(user_id: user2.id, event_id: event4.id, status: "pending", message: bio)
-# Request.create(user_id: user1.id, event_id: event3.id, status: "pending", message: bio)
-# Request.create(user_id: user5.id, event_id: event2.id, status: "pending", message: bio)
-# Request.create(user_id: user3.id, event_id: event1.id, status: "pending", message: bio)
-# Request.create(user_id: user4.id, event_id: event1.id, status: "pending", message: bio)
-# Request.create(user_id: user3.id, event_id: event6.id, status: "accepted", message: bio)
-# Request.create(user_id: user4.id, event_id: event8.id, status: "rejected", message: bio)
-# Request.create(user_id: user3.id, event_id: event8.id, status: "accepted", message: bio)
-
-# puts "REQUEST SEEDED BITCHES"

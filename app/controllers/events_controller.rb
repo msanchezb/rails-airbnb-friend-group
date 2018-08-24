@@ -4,16 +4,17 @@ class EventsController < ApplicationController
 
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   LOGOS = {
-    "drinking" => "fas fa-beer",
-    "sports" => "fas fa-futbol",
-    "cinema" => "fas fa-film",
-    "games" => "fas fa-chess-king",
-    "online" => "fas fa-laptop",
-    "outdoors" => "fas fa-walking"
+    "Drinking" => "fas fa-beer",
+    "Sports" => "fas fa-futbol",
+    "Cinema" => "fas fa-film",
+    "Games" => "fas fa-chess-king",
+    "Online" => "fas fa-laptop",
+    "Outdoors" => "fas fa-walking"
 }
 
   def index
-    @events = Event.all
+    @events = Event.all.reject { |event| event.user == current_user }
+    @events = @events.reject { |event| event.requests.select { |request| request.user == current_user}.any? }
     @location = "London"
     if params["data"].present?
       @location = params["data"]["location"] if params["data"]["location"].present?
@@ -29,6 +30,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    @event.group_photo = user.group_photo if params[:group_photo] == nil?
     if @event.save
       redirect_to root_path
     else
@@ -59,7 +61,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:date, :location, :description, :category, :group_size)
+    params.require(:event).permit(:name, :date, :location, :description, :category, :group_size, :group_bio, :group_photo)
   end
 
   def set_event
