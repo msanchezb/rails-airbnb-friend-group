@@ -1,0 +1,36 @@
+<div>
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :email, input_html: { placeholder: "e.g. john.smith@mail.com" } %>
+    <%= f.input :name, input_html: { placeholder: "e.g. John Smith" } %>
+    <%= f.input :password %>
+    <%= f.input :user_photo, label: "Please provide a Picture", input_html: { id: "input_photo" } %>
+    <%= f.input :user_photo_cache, as: :hidden %>
+    <%= f.input :user_bio, input_html: { placeholder: "Tell us a bit about yourself" } %>
+    <%= f.submit "Create event", class: ' form-control button-form' %>
+  <% end %>
+</div>
+
+<!-- <button (click)="fileInput.click()" class="btn btn-default">Upload</button>
+<span style="visibility: hidden; position: absolute; overflow: hidden; width: 0px; height:0px;border:none;margin:0; padding:0">
+     <input type="file" #fileInput ng2FileSelect [uploader]="uploader" />
+</span> -->
+
+
+<!-- <script>
+
+</script>
+<label for="file-upload" class="custom-file-upload">
+    <i class="fa fa-cloud-upload"></i> Custom Upload
+</label>
+<input id="file-upload" type="file"/>
+
+<script type="text/javascript">
+  const button = document.getElementById("input_photo");
+  button.classList.remove("form-control-file")
+  button.classList.remove("file")
+  button.classList.remove("optional")
+  button.classList.add("btn")
+  button.classList.add("button-special")
+  console.log(button.parentNode)
+</script> -->
+

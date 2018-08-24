@@ -95,12 +95,12 @@ messages = [
   "Love you guys, can I join?"
 ]
 
-categories = %w[drinking sports games outdoors cinema online ]
+categories = %w[Drinking Sports Games Outdoors Cinema Online]
 
 20.times do |user|
   name = names.sample
   email = "#{name}#{(100...1000).to_a.sample}@gmail.com"
-  user = User.new(email: email, name: name, user_bio: bios.sample, remote_user_photo_url: user_photos.sample, password: "password")
+  user = User.new(email: email, name: name, user_bio: bios.sample, remote_user_photo_url: user_photos.sample, password: "password", remote_group_photo_url: group_photos.sample, group_bio: group_bios.sample)
 
   user.save
   1.times do
@@ -110,7 +110,7 @@ categories = %w[drinking sports games outdoors cinema online ]
     min = [00, 30].sample
     date = "2018-#{month}-#{day} #{hour}:#{min}:00"
     random_index = (0..5).to_a.sample
-    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], remote_group_photo_url: group_photos.sample, group_size: (5..10).to_a.sample, price: event_prices[random_index])
+    event = Event.new(date: date, name: event_names[random_index], description: event_descriptions[random_index], location: address.sample, category: categories[random_index], group_bio: group_bios[random_index], remote_group_photo_url: group_photos[random_index], group_size: (5..10).to_a.sample, price: event_prices[random_index])
     event.user = user
     event.save
   end
@@ -118,7 +118,7 @@ end
 puts "USERS SEEDED!"
 puts "REQUESTS SEEDED!"
 
-User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, remote_user_photo_url: group_photos.sample, password: "password")
+User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, remote_user_photo_url: group_photos.sample, password: "password", remote_group_photo_url: group_photos.sample, group_bio: group_bios.sample)
 
 Event.all.each do |event|
   users = User.all.select { |user| user.id != event.user.id }
