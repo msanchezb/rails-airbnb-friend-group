@@ -21,7 +21,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    photo = @user.user_photo
     @user.update(user_params)
+    if @user.user_photo.nil?
+      user.user_photo = photo
+    end
     redirect_to user_path(@user)
   end
 
