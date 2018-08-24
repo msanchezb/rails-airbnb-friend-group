@@ -22,13 +22,15 @@
       <div class="form-group-first">
         <%= f.input :group_size, collection: (4...10).to_a.push("10+") %>
         <div >
-          <%= f.input :group_photo, label: "New Group Picture?" %>
+          <%= f.input :group_photo, label: "New Group Picture?", input_html: { value: current_user.group_photo } %>
           <%= f.input :group_photo_cache, as: :hidden %>
         </div>
       </div>
       <div class="form-group-third" >
-        <p>Current photo</p>
-        <div style="background-image: url(<%= image_path current_user.group_photo.url(:thumbnail) %>); background-size: cover; height: 150px;"></div>
+        <% unless current_user.group_photo.url.nil? %>
+          <p>Current photo</p>
+          <div style="background-image: url(<%= image_path current_user.group_photo.url(:thumbnail) %>); background-size: cover; height: 150px;"></div>
+        <% end %>
       </div>
     </div>
     <div class="form-group">
