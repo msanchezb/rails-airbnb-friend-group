@@ -6,7 +6,7 @@
     <%= f.input :user_photo, label: "Please provide a Picture", input_html: { id: "input_photo" } %>
     <%= f.input :user_photo_cache, as: :hidden %>
     <%= f.input :user_bio, input_html: { placeholder: "Tell us a bit about yourself" } %>
-    <%= f.submit "Create account", class: ' form-control button-form' %>
+    <%= f.submit message, class: ' form-control button-form' %>
   <% end %>
 </div>
 
