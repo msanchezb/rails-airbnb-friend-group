@@ -61,7 +61,7 @@ user_photos = [
   "https://images.unsplash.com/photo-1529408773869-8a620761744f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ac140e11990d2578596a4b9fddf01ab4&auto=format&fit=crop&w=400&q=60"
 ]
 
-address = ["Hoxton N1 6NG", "Hoxton E2 8EA", "Hoxton EC2A 3HZ", "Shoreditch EC3A 8EP", "Shoreditch EC3N 4AB", "Shoreditch, N1 6QT", "Soho, London", "Kensington, London", "Camden, London", "Hammersmith, W6 9QH", "Barnes SW13 9WT"]
+address = ["Hoxton N1 6NG", "Hoxton E2 8EA", "Shoreditch EC3A 8EP", "Shoreditch EC3N 4AB", "Shoreditch, N1 6QT", "Soho, London", "Kensington, London", "Camden, London", "Hammersmith, W6 9QH", "Barnes SW13 9WT"]
 
 event_names = [
   "Going out with a few friends for some drinks",
