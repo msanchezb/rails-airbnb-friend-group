@@ -13,7 +13,8 @@ class EventsController < ApplicationController
 }
 
   def index
-    @events = Event.all
+    @events = Event.all.reject { |event| event.user == current_user }
+    @events = @events.reject { |event| event.requests.select { |request| request.user == current_user}.any? }
     @location = "London"
     if params["data"].present?
       @location = params["data"]["location"] if params["data"]["location"].present?
