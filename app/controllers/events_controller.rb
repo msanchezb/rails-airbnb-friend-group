@@ -39,7 +39,10 @@ class EventsController < ApplicationController
   end
 
   def show
-    # raise
+    @marker = {
+        lat: @event.latitude,
+        lng: @event.longitude
+      }
   end
 
   def edit
