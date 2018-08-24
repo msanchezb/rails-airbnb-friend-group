@@ -30,9 +30,12 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    @event.group_photo = user.group_photo if params[:group_photo] == nil?
+    # @event.group_photo = current_user.group_photo if params[:event][:group_photo].nil?
     if @event.save
-      redirect_to root_path
+      # current_user.group_photo = @event.group_photo
+      # current_user.group_bio = @event.group_bio
+      # raise
+      redirect_to user_path(current_user)
     else
       render :new
     end

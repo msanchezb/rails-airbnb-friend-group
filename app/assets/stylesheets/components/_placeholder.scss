@@ -20,4 +20,11 @@
   width: 50%;
   margin: 0 auto;
   padding-top: 12px;
+  color: black;
+  opacity: 0.8;
+  &:hover {
+    text-decoration: none;
+    color: black;
+    opacity: 1;
+  }
 }
