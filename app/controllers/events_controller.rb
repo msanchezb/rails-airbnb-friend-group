@@ -21,6 +21,12 @@ class EventsController < ApplicationController
       @events = Event.near(@location, 3) if params["data"]["location"].present?
       @events = @events.where('date BETWEEN ? AND ?', params["data"]["date"].split(" to ")[0] + " 00:00:00", params["data"]["date"].split(" to ")[1]  + " 23:59:59") if params["data"]["date"].present?
     end
+    @markers = @events.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude
+      }
+    end
   end
 
   def new
@@ -77,15 +83,4 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
   end
-
-
-  # def get_location(address)
-  #   url = "https://maps.googleapis.com/maps/api/geocode/json?#{address}";
-  #   doc = open(url).read
-  #   doc = JSON.parse(doc)
-  #   latitude = doc[:data][:results][0][:geometry][:location][:lat]
-  #   longitude = doc[:data][:results][0][:geometry][:location][:lng]
-  #   { latitude: latitude, longitude: longitude }
-  # end
 end
-

@@ -29,14 +29,14 @@
 }
 
 #index-map {
-  flex: 0 0 600px;
+  height: 500px;
+}
+
+.map-container {
+ flex: 0 0 600px;
   position: sticky;
   top: 75px;
   margin-left: 10px;
-  img {
-    width: 100%;
-    height: auto;
-  }
 }
 
 .card-container {
