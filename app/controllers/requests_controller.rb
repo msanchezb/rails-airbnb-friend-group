@@ -18,6 +18,22 @@ class RequestsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def accept_request
+    @request = Request.find(params[:id])
+    @request.status = "accepted"
+    @request.save
+    @user = @request.event.user
+    render "users/show"
+  end
+
+  def reject_request
+    @request = Request.find(params[:id])
+    @request.status = "rejected"
+    @request.save
+    @user = @request.event.user
+    render "users/show"
+  end
+
   private
 
   def request_params

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :requests, only: :destroy
   resources :users, except: [:destroy, :index]
+  get "requests/:id/accept/", to: "requests#accept_request", as: "accept_request"
+  get "requests/:id/reject/", to: "requests#reject_request", as: "reject_request"
 
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
