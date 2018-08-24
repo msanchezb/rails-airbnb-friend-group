@@ -12,7 +12,7 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="top-margin">
+    <div class="<%= "top-margin" if !flash[:alert] %>">
       <%= yield %>
     </div>
     <%= javascript_include_tag 'application' %>
