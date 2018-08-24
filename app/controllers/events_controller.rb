@@ -30,6 +30,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    @event.group_photo = user.group_photo if params[:group_photo] == nil?
     if @event.save
       redirect_to root_path
     else
@@ -60,7 +61,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:date, :location, :description, :category, :group_size)
+    params.require(:event).permit(:name, :date, :location, :description, :category, :group_size, :group_bio, :group_photo)
   end
 
   def set_event

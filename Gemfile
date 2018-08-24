@@ -3,6 +3,9 @@ ruby '2.4.4'
 
 # Read the API JSON from the google API
 gem 'json'
+# Picture setup
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 
 gem 'bootsnap', require: false
 gem 'devise'
