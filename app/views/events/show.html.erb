@@ -37,18 +37,10 @@
       <%= render 'shared/request-form' %>
     </div>
   </div>
-  <!-- <div id="map-container"> -->
   <div id="map" data-marker="<%= @marker.to_json %>"
     >
   </div>
-  <!-- </div> -->
 </div>
 
- <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
-
-
-
-<!-- <li>Event confirmed?? <%#= @event.confirmed %></li> -->
-<%#= @event.review_of_host %>
-<%#= @event.review_of_guest %>
-<%#= link_to "Home", "/events/index/1/2"  %>
+ <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+ <%= javascript_pack_tag "map" %>
