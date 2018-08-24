@@ -21,6 +21,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if @user == current_user
+      @user.notifications = false
+      @user.save
+    end
   end
 
   def edit
