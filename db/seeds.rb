@@ -130,6 +130,8 @@ Event.all.each do |event|
   end
 end
 
+User.create(email: "test@test.com", name: "Awesome", user_bio: bios.sample, user_photo: user_photos.sample, password: "password")
+
 puts "EVENTS SEEDED!"
 puts "#{User.count} users created, #{Event.count} events created, #{Request.count} requests created. "
 puts "Seeding complete"
