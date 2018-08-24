@@ -37,39 +37,41 @@
                 </div>
               <% end %>
             </div>
-            <% event.requests.each do |request| %>
-              <div class="request-card">
-                <div class="card-content-flex">
-                  <div class="card-left">
-                    <div class="middle-column">
-                      <div class="request-title">
-                        <h4><strong>Request to join from </strong><%= request.user.name %>
-                        <span class="request-link-sm">
-                          <%= link_to user_path(request.user), target: "_blank" do%>
-                            <i class="fas fa-long-arrow-alt-left"></i>
-                            <span>More about this user</span>
+              <% if @user == current_user %>
+                <% event.requests.each do |request| %>
+                  <div class="request-card">
+                    <div class="card-content-flex">
+                      <div class="card-left">
+                        <div class="middle-column">
+                          <div class="request-title">
+                            <h4><strong>Request to join from </strong><%= request.user.name %>
+                            <span class="request-link-sm">
+                              <%= link_to user_path(request.user), target: "_blank" do%>
+                                <i class="fas fa-long-arrow-alt-left"></i>
+                                <span>More about this user</span>
+                              <% end %>
+                            </span>
+                            </h4>
+                           <p><strong>Message: </strong><%= request.message %></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="request-right">
+                        <% if request.status == "pending" %>
+                          <%= link_to accept_request_path(request), id: "change-request-status", class: "request-confirm" do %>
+                            <i class="fas fa-check"></i>Confirm request
                           <% end %>
-                        </span>
-                        </h4>
-                       <p><strong>Message: </strong><%= request.message %></p>
+                          <%= link_to reject_request_path(request), id: "change-request-status", class: "request-reject" do %>
+                            <i class="fas fa-times"></i>Reject request
+                          <% end %>
+                        <% else %>
+                          <p>Request <%= request.status %></p>
+                        <% end %>
                       </div>
                     </div>
                   </div>
-                  <div class="request-right">
-                    <% if request.status == "pending" %>
-                      <%= link_to accept_request_path(request), id: "change-request-status", class: "request-confirm" do %>
-                        <i class="fas fa-check"></i>Confirm request
-                      <% end %>
-                      <%= link_to reject_request_path(request), id: "change-request-status", class: "request-reject" do %>
-                        <i class="fas fa-times"></i>Reject request
-                      <% end %>
-                    <% else %>
-                      <p>Request <%= request.status %></p>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+                <% end %>
+              <% end %>
           <% end %>
         </div>
         <div class="profile-joined-events tabcontent" id="Joined">
@@ -89,17 +91,19 @@
                         <p><%= event.date.strftime("%H:%M") %></p>
                     </div>
                   </div>
-                  <div class="right-column">
-                    <div class="request-status <%= event.requests.find { |request| request.user == @user }.status %>">
-                      <i class="<%= UsersController::STATUSES[event.requests.find { |request| request.user == @user }.status] %>"></i>
-                      <%= event.requests.find { |request| request.user == @user }.status %>
-                    </div>
-                    <% unless event.requests.find { |request| request.user == @user }.status == "rejected" %>
-                      <%= link_to request_path(event.requests.find { |request| request.user == @user }), method: :delete, id: "delete-request" do %>
-                        <i class="fas fa-times"></i>Cancel request
+                  <% if @user == current_user %>
+                    <div class="right-column">
+                      <div class="request-status <%= event.requests.find { |request| request.user == @user }.status %>">
+                        <i class="<%= UsersController::STATUSES[event.requests.find { |request| request.user == @user }.status] %>"></i>
+                        <%= event.requests.find { |request| request.user == @user }.status %>
+                      </div>
+                      <% unless event.requests.find { |request| request.user == @user }.status == "rejected" %>
+                        <%= link_to request_path(event.requests.find { |request| request.user == @user }), method: :delete, id: "delete-request" do %>
+                          <i class="fas fa-times"></i>Cancel request
+                        <% end %>
                       <% end %>
-                    <% end %>
-                  </div>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
             </div>
