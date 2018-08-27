@@ -17,7 +17,9 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to user_path(current_user)
+    @user = @request.user
+    reload
+    # redirect_to user_path(current_user)
   end
 
   def accept_request
@@ -27,7 +29,8 @@ class RequestsController < ApplicationController
     @request.user.notifications = true
     @request.user.save
     @user = @request.event.user
-    render "users/show"
+    reload
+    # render "users/show"
   end
 
   def reject_request
@@ -37,7 +40,16 @@ class RequestsController < ApplicationController
     @request.user.notifications = true
     @request.user.save
     @user = @request.event.user
-    render "users/show"
+    reload
+    # render "users/show"
+  end
+
+  def reload
+    @user = User.find(params[:id]) if @user.nil?
+    respond_to do |format|
+      format.html { redirect_to user_path(@user) }
+      format.js  { render "requests/reload" } # <-- will render `app/views/requests/reload.js.erb`
+    end
   end
 
   private

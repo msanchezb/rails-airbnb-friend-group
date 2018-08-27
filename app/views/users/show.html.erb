@@ -12,13 +12,13 @@
         <div class="profile-hosted-events tabcontent" id="Hosted">
           <h2><%= @user.name %>'s Hosted Events</h2>
           <% @user.events.sort_by { |event| event.date}.each do |event|%>
-            <%= render 'shared/events-requested', event: event %>
+            <%= render 'shared/events-requested', event: event, user: @user %>
           <% end %>
         </div>
         <div class="profile-joined-events tabcontent" id="Joined">
           <h2><%= @user.name %>'s Requested Events</h2>
           <% @user.events_requested.sort_by { |event| event.date}.each do |event| %>
-            <%= render 'shared/events-hosted', event: event %>
+            <%= render 'shared/events-hosted', event: event, user: @user %>
           <% end %>
         </div>
       </div>
@@ -33,7 +33,35 @@
   </div>
 </div>
 
+<%= form_tag requests_reload_path(@user), method: "post", remote: true do |f| %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+  <%= submit_tag "", style: "display: none;", id: "reload" %>
+<% end %>
+
 <script type="text/javascript">
+
+  const reloadButton = document.getElementById("reload");
+
+  const reloadPage = () => {
+    reloadButton.click()
+  };
+
+  document.addEventListener("DOMContentLoaded", (event) => {
+    setInterval(reloadPage, 10000)
+  });
+
+
+  const dataHosted = (content) => {
+    const element = document.getElementById('Hosted')
+    element.innerHTML = content;
+  }
+
+  const dataRequested = (content) => {
+    const element = document.getElementById('Joined')
+    element.innerHTML = content;
+  }
+
+
   function openEvent(evt, eventName) {
     // Declare all variables
     var i, tabcontent, tab;

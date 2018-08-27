@@ -1,0 +1,15 @@
+
+dataHosted(`\
+  <h2><%= @user.name %>'s Hosted Events</h2>\
+  <% @user.events.sort_by { |event| event.date}.each do |event|%>\
+    <%= render 'shared/events-requested', event: event, user: @user %>\
+  <% end %>\
+  `);
+dataRequested(`\
+  <h2><%= @user.name %>'s Requested Events</h2>\
+  <% @user.events_requested.sort_by { |event| event.date}.each do |event| %>\
+    <%= render 'shared/events-hosted', event: event, user: @user %>\
+  <% end %>\
+  `);
+
+
