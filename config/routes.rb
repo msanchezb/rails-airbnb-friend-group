@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get "requests/:id/accept/", to: "requests#accept_request", as: "accept_request"
   get "requests/:id/reject/", to: "requests#reject_request", as: "reject_request"
 
+  post "/users/:id/reload", to: "requests#reload", as: "requests_reload"
+  post "/users/:id/badge", to: "users#badge", as: "badge_update"
+
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

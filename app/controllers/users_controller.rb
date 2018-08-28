@@ -39,6 +39,13 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def badge
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.js  { render "users/badge" } # <-- will render `app/views/users/badge.js.erb`
+    end
+  end
+
   private
 
   def user_params
